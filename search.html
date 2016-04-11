@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="mySearc">
+<head>
+	<title>AngularJS - Searching</title>
+	<script type="text/javascript" src="scripts/angular.js"></script>
+	<script type="text/javascript" src="scripts/searching.js"></script>
+	<style type="text/css">
+
+		table{
+		border-collapse: collapse;
+
+	}
+	td{
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+<div ng-controller="searchController" id="app">
+<div>
+	<label>Search: </label><input type="text" ng-model="searchText" placeholder="Search Employee">
+</div>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Name</th>				
+				<th>Gender</th>
+				<th>Salary(number)</th>
+				<th>Salary(currency)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="employee in emploees | filter: searchText">
+				<td>{{ employee.name | uppercase}}</td>
+				<td>{{ employee.dateOfBirth | date:"yyyy/MM/dd" }}</td>
+				<td>{{ employee.gender | lowercase}}</td>
+				<td>{{ employee.salary | number}}</td>
+				<td>{{ employee.salary | currency:"Lv. ":1}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

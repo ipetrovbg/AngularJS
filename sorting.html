@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+	<title>AngularJS</title>
+	<script type="text/javascript" src="scripts/angular.js"></script>
+	<script type="text/javascript" src="scripts/script.js"></script>
+	<style type="text/css">
+	table{
+		border-collapse: collapse;
+
+	}
+	th{
+		cursor: pointer;
+	}
+	td{
+			padding: 5px;
+		}
+		
+		.arrow-down{
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 5px 5px 0 5px;
+			border-color: #000000 transparent transparent transparent;
+			display: inline-block;
+
+		}
+		.arrow-up{
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 5px 5px 5px;
+			border-color: transparent transparent #000000 transparent;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+<div id="app" ng-controller="myController">
+	<table border="1">
+		<thead>
+			<tr>
+				<th ng-click="sortData('name')">
+				Name <div ng-class="getClass('name')"></div>
+				</th>
+				<th ng-click="sortData('dateOfBirth')">Date Of Birth <div ng-class="getClass('dateOfBirth')">
+				</th>
+				<th>Gender
+				</th>
+				<th ng-click="sortData('salary')">
+				Salary(number) <div ng-class="getClass('salary')"></div>
+				</th>
+				<th>Salary(currency)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="employee in emploees | orderBy:sorting:reverse">
+				<td>{{ employee.name | uppercase}}</td>
+				<td>{{ employee.dateOfBirth | date:"yyyy/MM/dd" }}</td>
+				<td>{{ employee.gender | lowercase}}</td>
+				<td>{{ employee.salary | number}}</td>
+				<td>{{ employee.salary | currency:"Lv. ":1}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
